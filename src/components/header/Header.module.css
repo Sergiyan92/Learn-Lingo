@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  align-items: center;
   margin: 20px 64px;
 }
 .logo {
@@ -14,9 +15,11 @@
 }
 .nav {
   display: flex;
+  align-items: center;
 }
 .link_list {
   margin-left: 362px;
+  margin-right: 268px;
 }
 .link {
   color: var(--color-main-text);
@@ -30,11 +33,30 @@
 }
 .btn_logIn {
   display: flex;
+  align-items: center;
+  margin-right: 16px;
   border: none;
   background-color: white;
 }
+.btn_log_text {
+  margin-left: 8px;
+  color: var(--color-main-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
 .btn_reg {
+  width: 166px;
+  height: 48px;
+  padding: 14px, 39px, 14px, 39px;
+  border-radius: 12px;
+  gap: 8px;
   color: white;
   border: none;
   background-color: black;
+}
+.btn_reg_text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
 }

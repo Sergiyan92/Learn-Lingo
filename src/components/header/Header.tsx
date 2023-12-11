@@ -23,9 +23,11 @@ const Header = () => {
       <div className={css.auth}>
         <button className={css.btn_logIn}>
           <img src={logIn} alt="Log in" />
-          <span>Log in</span>
+          <span className={css.btn_log_text}>Log in</span>
         </button>
-        <button className={css.btn_reg}>Registration</button>
+        <button className={css.btn_reg}>
+          <span className={css.btn_reg_text}>Registration</span>
+        </button>
       </div>
     </div>
   );
