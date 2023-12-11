@@ -1,68 +1,105 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-button-main: #f4c550;
+  --color-botton-second: #fbe9ba;
+  --color-main-text: #121417;
+  --color-fiolet: #9fbaae;
+  --color-one: #cbded3;
+  --color-two: #9fb7ce;
+  --color-three: #bfd6ea;
+  --color-four: #e0a39a;
+  --color-five: #f2c0bd;
+  --color-six: #f0aa8d;
+  --color-seven: #f4c8ba;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+}
+a {
+  text-decoration: none;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-size: 80px;
+  line-height: 1;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+img {
+  display: block;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+.container-modal {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 375px) {
+  .container {
+    max-width: 375px;
   }
-  a:hover {
-    color: #747bff;
+  .container-modal {
+    max-width: 335px;
   }
-  button {
-    background-color: #f9f9f9;
+}
+/* mobile */
+@media screen and (min-width: 375px) {
+  .container {
+    width: 375px;
+  }
+  .container-modal {
+    width: 335px;
+  }
+}
+
+/* tablet */
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    padding: 0 64px;
+  }
+}
+/* десктоп */
+
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 1440px;
+    padding: 0 64px;
+  }
+  .container-modal {
+    width: 1000px;
   }
 }
