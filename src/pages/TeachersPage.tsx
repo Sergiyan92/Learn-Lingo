@@ -1,11 +1,12 @@
-import Card from "../components/card/Card";
-import Filter from "../components/filter/Filter";
+// import Card from "../components/card/Card";
+import Teachers from "../components/teachers/Teachers";
+// import DropdownList from "../components/filter/DropdownList";
 
 const TeachersPage = () => {
   return (
     <div>
-      <Filter />
-      <Card />
+      <Teachers />
+      {/* <Card /> */}
     </div>
   );
 };

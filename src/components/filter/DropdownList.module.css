@@ -1,0 +1,14 @@
+.dropdown {
+  margin-right: 20px;
+}
+.lable {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #8a8a89;
+}
+.option {
+  width: 200px;
+}
