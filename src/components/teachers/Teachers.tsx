@@ -1,103 +1,79 @@
-import React, { useState } from "react";
-// import { useFirebase } from "../context/FirebaseContext";
-import css from "./Teachers.module.css";
-import DropdownList from "../filter/DropdownList";
+import React, { useEffect, useState } from "react";
+
+interface Review {
+  reviewer_name: string;
+  reviewer_rating: number;
+  comment: string;
+}
+
+interface Teacher {
+  name: string;
+  surname: string;
+  languages: string[];
+  levels: string[];
+  rating: number;
+  reviews: Review[];
+  price_per_hour: number;
+  lessons_done: number;
+  avatar_url: string;
+  lesson_info: string;
+  conditions: string[];
+  experience: string;
+}
 
 const Teachers: React.FC = () => {
-  //   const firebase = useFirebase();
-  //   const [teachers, setTeachers] = useState([]);
-  const [, setSelectedLanguage] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
-  const [, setSelectedLevel] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
-  const [, setSelectedPrice] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
 
-  const languageOptions = [
-    { value: "english", label: "English" },
-    { value: "spanish", label: "Spanish" },
-    { value: "french", label: "French" },
-    // Додайте інші мови за потребою
-  ];
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const response = await fetch("/teachers.json");
+        const data = await response.json();
+        setTeachers(data);
+      } catch (error) {
+        console.error("Error fetching teachers", error);
+      }
+    };
 
-  const levelOptions = [
-    { value: "a1beginner", label: "A1 Beginner" },
-    { value: "a2elementary", label: "A2 Elementary" },
-    { value: "b1intermediate", label: "B1 Intermediate" },
-    { value: "b2upper-intermediate", label: "B2 Upper-Intermediate" },
-  ];
-
-  const priceOptions = [
-    { value: "28$", label: "28$" },
-    { value: "30$", label: "30$" },
-    { value: "35$", label: "35$" },
-  ];
-
-  //   useEffect(() => {
-  //     const fetchTeachers = async () => {
-  //       try {
-  //         const snapshot = await firebase
-  //           .database()
-  //           .ref("teachers")
-  //           .once("value");
-  //         const teachersData = snapshot.val();
-  //         if (teachersData) {
-  //           setTeachers(Object.values(teachersData));
-  //         }
-  //       } catch (error) {
-  //         console.error("Error fetching teachers", error);
-  //       }
-  //     };
-
-  //     fetchTeachers();
-  //   }, [firebase]);
-
-  const handleLanguageChange = (
-    selectedOption: { value: string; label: string } | null
-  ) => {
-    setSelectedLanguage(selectedOption);
-    // Додайте логіку для фільтрації викладачів за мовою
-  };
-
-  const handleLevelChange = (
-    selectedOption: { value: string; label: string } | null
-  ) => {
-    setSelectedLevel(selectedOption);
-    // Додайте логіку для фільтрації викладачів за рівнем знань
-  };
-
-  const handlePriceChange = (
-    selectedOption: { value: string; label: string } | null
-  ) => {
-    setSelectedPrice(selectedOption);
-    // Додайте логіку для фільтрації викладачів за ціною
-  };
+    fetchTeachers();
+  }, []);
 
   return (
     <section>
-      <div className={css.filter}>
-        <DropdownList
-          options={languageOptions}
-          label="Language"
-          onChange={handleLanguageChange}
-        />
-        <DropdownList
-          options={levelOptions}
-          label="Level of knowledge"
-          onChange={handleLevelChange}
-        />
-        <DropdownList
-          options={priceOptions}
-          label="Price"
-          onChange={handlePriceChange}
-        />
-      </div>
+      <h2>Teachers</h2>
+      <ul>
+        {teachers.map((teacher: Teacher, index: number) => (
+          <li key={index}>
+            <div>
+              {teacher.name} {teacher.surname}
+            </div>
+            <div>Languages: {teacher.languages.join(", ")}</div>
+            <div>Levels: {teacher.levels.join(", ")}</div>
+            <div>Rating: {teacher.rating}</div>
+            <div>
+              Reviews:
+              <ul>
+                {teacher.reviews.map((review, reviewIndex) => (
+                  <li key={reviewIndex}>
+                    <div>
+                      {review.reviewer_name} ({review.reviewer_rating}):{" "}
+                      {review.comment}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>Price per hour: {teacher.price_per_hour}</div>
+            <div>Lessons done: {teacher.lessons_done}</div>
+            <div>
+              Avatar URL: <img src={teacher.avatar_url} alt="Teacher Avatar" />
+            </div>
+            <div>Lesson Info: {teacher.lesson_info}</div>
+            <div>Conditions: {teacher.conditions.join(", ")}</div>
+            <div>Experience: {teacher.experience}</div>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };
