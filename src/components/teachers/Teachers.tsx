@@ -29,15 +29,15 @@ const Teachers: React.FC = () => {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [displayedTeachers, setDisplayedTeachers] = useState<Teacher[]>([]);
   const [teachersToShow, setTeachersToShow] = useState<number>(4);
-  const [selectedLanguage, setSelectedLanguage] = useState<{
+  const [, setSelectedLanguage] = useState<{
     value: string;
     label: string;
   } | null>(null);
-  const [selectedLevel, setSelectedLevel] = useState<{
+  const [, setSelectedLevel] = useState<{
     value: string;
     label: string;
   } | null>(null);
-  const [selectedPrice, setSelectedPrice] = useState<{
+  const [, setSelectedPrice] = useState<{
     value: string;
     label: string;
   } | null>(null);
