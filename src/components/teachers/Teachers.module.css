@@ -3,10 +3,17 @@
   align-items: center;
   margin: 96px 128px 32px;
 }
+.card {
+  display: flex;
+}
 .avatar {
+  margin-left: 152px;
   padding: 10px;
   width: 96px;
   height: 96px;
   border: 5px solid #fbe9ba;
   border-radius: 100px;
+}
+.info {
+  display: flex;
 }

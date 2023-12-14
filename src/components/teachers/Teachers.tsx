@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import css from "./Teachers.module.css";
 import DropdownList from "../filter/DropdownList";
-
+import book from "../../assets/book-open-01.svg";
+import star from "../../assets/star.svg";
 interface Review {
   reviewer_name: string;
   reviewer_rating: number;
@@ -120,7 +121,7 @@ const Teachers: React.FC = () => {
       </div>
       <ul>
         {displayedTeachers.map((teacher: Teacher, index: number) => (
-          <li key={index}>
+          <li key={index} className={css.card}>
             <div>
               <img
                 src={teacher.avatar_url}
@@ -129,6 +130,15 @@ const Teachers: React.FC = () => {
               />
             </div>
             <div>
+              <div className={css.info}>
+                <p>Languages</p>
+                <img src={book} alt="book icon" /> <span>Lessons online</span> |{" "}
+                <span>Lessons done: {teacher.lessons_done}</span>|{" "}
+                <img src={star} alt="star icon" />
+                <span>Rating: {teacher.rating}</span>
+              </div>
+            </div>
+            {/* <div>
               {teacher.name} {teacher.surname}
             </div>
             <div>Languages: {teacher.languages.join(", ")}</div>
@@ -151,7 +161,7 @@ const Teachers: React.FC = () => {
             <div>Lessons done: {teacher.lessons_done}</div>
             <div>Lesson Info: {teacher.lesson_info}</div>
             <div>Conditions: {teacher.conditions.join(", ")}</div>
-            <div>Experience: {teacher.experience}</div>
+            <div>Experience: {teacher.experience}</div> */}
           </li>
         ))}
       </ul>
