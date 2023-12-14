@@ -1,13 +1,22 @@
+.section {
+  background-color: #d1d4d833;
+}
 .filter {
   display: flex;
   align-items: center;
-  margin: 96px 128px 32px;
+  padding: 96px 128px 32px;
 }
 .card {
   display: flex;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 24px 24px;
+  margin-bottom: 32px;
+  background-color: #fff;
+  border-radius: 24px;
 }
 .avatar {
-  margin-left: 152px;
+  margin-right: 48px;
   padding: 10px;
   width: 96px;
   height: 96px;
@@ -16,4 +25,122 @@
 }
 .info {
   display: flex;
+}
+.title {
+  margin-right: 176px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: #8a8a89;
+}
+.icon {
+  margin-left: 16px;
+  margin-right: -8px;
+}
+.subtitle {
+  margin-right: 16px;
+  margin-left: 16px;
+  color: var(--color-main-text);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+}
+.price {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: #38cd3e;
+}
+.name {
+  margin-top: 8px;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: var(--color-main-text);
+}
+.info_leng {
+  margin-top: 32px;
+}
+.title_sub {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: #8a8a89;
+}
+.leng {
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  columns: var(--color-main-text);
+  border-bottom: 1px solid #8a8a89;
+}
+.lesson {
+  margin-top: 8px;
+}
+.title_lesson {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  columns: var(--color-main-text);
+}
+.info_coment {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+.raiting {
+  display: flex;
+  margin-bottom: 16px;
+}
+.icon_raiting {
+  margin-right: 8px;
+}
+.btn_read {
+  margin-top: 16px;
+  border: none;
+  border-bottom: 1px solid var(--color-main-text);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  columns: var(--color-main-text);
+  background: #fff;
+}
+.exp {
+  margin-top: 16px;
+}
+.level {
+  display: flex;
+  margin-top: 32px;
+}
+.level_leng {
+  margin-right: 8px;
+  padding: 8px 12px;
+  border-radius: 35px;
+  border: 1px solid #8a8a89;
+}
+.btn {
+  display: flex;
+}
+.btn_load {
+  margin-top: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px 48px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-button-main);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+  color: var(--color-main-text);
 }
