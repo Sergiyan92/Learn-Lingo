@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import css from "./Teachers.module.css";
+import DropdownList from "../filter/DropdownList";
 
 interface Review {
   reviewer_name: string;
@@ -23,6 +25,20 @@ interface Teacher {
 
 const Teachers: React.FC = () => {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
+  const [displayedTeachers, setDisplayedTeachers] = useState<Teacher[]>([]);
+  const [teachersToShow, setTeachersToShow] = useState<number>(4);
+  const [selectedLanguage, setSelectedLanguage] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+  const [selectedLevel, setSelectedLevel] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+  const [selectedPrice, setSelectedPrice] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -38,12 +54,80 @@ const Teachers: React.FC = () => {
     fetchTeachers();
   }, []);
 
+  useEffect(() => {
+    setDisplayedTeachers(teachers.slice(0, teachersToShow));
+  }, [teachers, teachersToShow]);
+
+  const languageOptions = [
+    { value: "english", label: "English" },
+    { value: "spanish", label: "Spanish" },
+    // Додайте інші мови за потребою
+  ];
+
+  const levelOptions = [
+    { value: "beginner", label: "Beginner" },
+    { value: "intermediate", label: "Intermediate" },
+    { value: "advanced", label: "Advanced" },
+  ];
+
+  const priceOptions = [
+    { value: "low", label: "Low" },
+    { value: "medium", label: "Medium" },
+    { value: "high", label: "High" },
+  ];
+  const handleLanguageChange = (
+    selectedOption: { value: string; label: string } | null
+  ) => {
+    setSelectedLanguage(selectedOption);
+    // Додайте логіку для фільтрації викладачів за мовою
+  };
+
+  const handleLevelChange = (
+    selectedOption: { value: string; label: string } | null
+  ) => {
+    setSelectedLevel(selectedOption);
+    // Додайте логіку для фільтрації викладачів за рівнем знань
+  };
+
+  const handlePriceChange = (
+    selectedOption: { value: string; label: string } | null
+  ) => {
+    setSelectedPrice(selectedOption);
+    // Додайте логіку для фільтрації викладачів за ціною
+  };
+  const handleLoadMore = () => {
+    setTeachersToShow((prev) => prev + 4);
+  };
   return (
     <section>
       <h2>Teachers</h2>
+      <div className={css.filter}>
+        <DropdownList
+          options={languageOptions}
+          label="Language"
+          onChange={handleLanguageChange}
+        />
+        <DropdownList
+          options={levelOptions}
+          label="Level of knowledge"
+          onChange={handleLevelChange}
+        />
+        <DropdownList
+          options={priceOptions}
+          label="Price"
+          onChange={handlePriceChange}
+        />
+      </div>
       <ul>
-        {teachers.map((teacher: Teacher, index: number) => (
+        {displayedTeachers.map((teacher: Teacher, index: number) => (
           <li key={index}>
+            <div>
+              <img
+                src={teacher.avatar_url}
+                className={css.avatar}
+                alt="Teacher Avatar"
+              />
+            </div>
             <div>
               {teacher.name} {teacher.surname}
             </div>
@@ -65,15 +149,15 @@ const Teachers: React.FC = () => {
             </div>
             <div>Price per hour: {teacher.price_per_hour}</div>
             <div>Lessons done: {teacher.lessons_done}</div>
-            <div>
-              Avatar URL: <img src={teacher.avatar_url} alt="Teacher Avatar" />
-            </div>
             <div>Lesson Info: {teacher.lesson_info}</div>
             <div>Conditions: {teacher.conditions.join(", ")}</div>
             <div>Experience: {teacher.experience}</div>
           </li>
         ))}
       </ul>
+      {teachers.length > displayedTeachers.length && (
+        <button onClick={handleLoadMore}>Load More</button>
+      )}
     </section>
   );
 };

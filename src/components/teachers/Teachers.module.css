@@ -3,3 +3,10 @@
   align-items: center;
   margin: 96px 128px 32px;
 }
+.avatar {
+  padding: 10px;
+  width: 96px;
+  height: 96px;
+  border: 5px solid #fbe9ba;
+  border-radius: 100px;
+}
