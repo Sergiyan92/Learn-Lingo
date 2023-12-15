@@ -66,19 +66,27 @@ const Teachers: React.FC = () => {
   const languageOptions = [
     { value: "english", label: "English" },
     { value: "spanish", label: "Spanish" },
-    // Додайте інші мови за потребою
+    { value: "french", label: "French" },
+    { value: "german", label: "German" },
+    { value: "mandarin-chinese", label: "Mandarin Chinese" },
   ];
 
   const levelOptions = [
-    { value: "beginner", label: "Beginner" },
-    { value: "intermediate", label: "Intermediate" },
-    { value: "advanced", label: "Advanced" },
+    { value: "a1beginner", label: "A1 Beginner" },
+    { value: "a2elementary", label: "A2 Elementary" },
+    { value: "b2intermediate", label: "B1 Intermediate" },
+    { value: "b2upper-intermediate", label: "B2 Upper-Intermediate" },
+    { value: "c1advanced", label: "C1 Advanced" },
+    { value: "c2proficient", label: "C2 Proficient" },
   ];
 
   const priceOptions = [
-    { value: "low", label: "Low" },
-    { value: "medium", label: "Medium" },
-    { value: "high", label: "High" },
+    { value: "25", label: "25$" },
+    { value: "27", label: "27$" },
+    { value: "28", label: "28$" },
+    { value: "30", label: "30$" },
+    { value: "32", label: "32$" },
+    { value: "35", label: "35$" },
   ];
   const handleLanguageChange = (
     selectedOption: { value: string; label: string } | null
