@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import css from "./Registration.module.css";
-
+import close from "../../assets/close.svg";
 interface Modal {
   onClose: () => void;
 }
@@ -10,7 +10,6 @@ const Registration = ({ onClose }: Modal) => {
   const formik = useFormik({
     initialValues: {
       firstName: "",
-      lastName: "",
       email: "",
       password: "",
     },
@@ -33,6 +32,9 @@ const Registration = ({ onClose }: Modal) => {
     <form onSubmit={formik.handleSubmit} className={css.reg}>
       <div>
         <h2>Registration</h2>
+        <button onClick={() => onClose()}>
+          <img src={close} alt="icon close" width={32} height={32} />
+        </button>
         <p>
           Thank you for your interest in our platform! In order to register, we
           need some information. Please provide us with the following

@@ -1,7 +1,8 @@
 import css from "./Header.module.css";
 import logo from "../../assets/ukraine.svg";
-import logIn from "../../assets/log_in.svg";
+
 import { Link } from "react-router-dom";
+import ModalComponent from "../modal/ModalComponent";
 
 const Header = () => {
   return (
@@ -21,13 +22,7 @@ const Header = () => {
         </div>
       </nav>
       <div className={css.auth}>
-        <button className={css.btn_logIn}>
-          <img src={logIn} alt="Log in" />
-          <span className={css.btn_log_text}>Log in</span>
-        </button>
-        <button className={css.btn_reg}>
-          <span className={css.btn_reg_text}>Registration</span>
-        </button>
+        <ModalComponent />
       </div>
     </div>
   );

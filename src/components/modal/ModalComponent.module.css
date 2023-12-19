@@ -1,0 +1,49 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+}
+.modal {
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
+}
+.btn_reg {
+  width: 166px;
+  height: 48px;
+  padding: 14px, 39px, 14px, 39px;
+  border-radius: 12px;
+  gap: 8px;
+  color: white;
+  border: none;
+  background-color: black;
+}
+.btn_reg_text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.btn_logIn {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  border: none;
+  background-color: white;
+}
+.btn_log_text {
+  width: 48px;
+  margin-left: 8px;
+  color: var(--color-main-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.auth {
+  display: flex;
+}
