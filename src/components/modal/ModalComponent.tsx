@@ -29,6 +29,12 @@ const ModalComponent = () => {
         return null;
     }
   };
+  const handleBackdrop = (event: React.MouseEvent<HTMLDivElement>) => {
+    const { target, currentTarget } = event;
+    if (target === currentTarget) {
+      handleCloseModal();
+    }
+  };
 
   return (
     <div className={css.auth}>
@@ -46,7 +52,11 @@ const ModalComponent = () => {
         <span className={css.btn_reg_text}>Registration</span>
       </button>
 
-      {isModalOpen && <div className={css.overlay}>{renderForm()}</div>}
+      {isModalOpen && (
+        <div onClick={handleBackdrop} className={css.overlay}>
+          {renderForm()}
+        </div>
+      )}
     </div>
   );
 };
