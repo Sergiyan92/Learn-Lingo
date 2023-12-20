@@ -23,6 +23,7 @@ const Registration = ({ onClose }: Modal) => {
     onSubmit: (values) => {
       // Handle form submission logic here
       console.log("Submitted:", values);
+      formik.resetForm();
       // Close the modal or perform any other actions
       onClose();
     },

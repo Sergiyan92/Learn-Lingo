@@ -11,14 +11,132 @@
   z-index: 100;
 }
 .modal {
+  overflow: auto;
+  max-height: 80vh; /* Налаштуйте висоту за потребою */
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal {
   display: flex;
   flex-direction: column;
   padding: 64px;
   border-radius: 30px;
   background: #fff;
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
 }
 .sub_title_book {
   width: 472px;
+  margin-bottom: 20px;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: #121417cc;
+}
+.btm_close {
+  display: flex;
+  margin-left: auto;
+  margin-bottom: 12px;
+  border: none;
+  background: #fff;
+}
+.title_book {
+  margin-bottom: 20px;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  color: var(--color-main-text);
+}
+.info {
+  display: flex;
+  margin-bottom: 40px;
+}
+.img_avatar {
+  margin-right: 14px;
+  border-radius: 100px;
+}
+.info_text {
+  display: flex;
+  flex-direction: column;
+}
+.info_title {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  color: #8a8a89;
+}
+.info_sub {
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: var(--color-main-text);
+}
+.sub_title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0em;
+  color: var(--color-main-text);
+}
+.lable {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: var(--color-main-text);
+}
+input[type="radio"] {
+  margin: 0;
+  margin-right: 8px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px; /* Розміри іншого відображення, може бути налаштовано відповідно до потреби */
+  height: 20px;
+  border-radius: 12px;
+  border: 1px solid #12141733; /* Колір обводки радіокнопки (можна налаштувати за потреби) */
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+  background-color: var(--color-button-main);
+  border-color: var(--color-button-main);
+}
+.input_fullname {
+  width: 472px;
+  margin-top: 40px;
+  border: 1px solid #1214171a;
+  border-radius: 12px;
+  padding: 18px;
+}
+.input_email {
+  width: 472px;
+  margin-top: 18px;
+  border: 1px solid #1214171a;
+  border-radius: 12px;
+  padding: 18px;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.btn_book {
+  width: 100%;
+  border-radius: 12px;
+  padding: 16px 0;
+  border: none;
+  background-color: var(--color-button-main);
+}
+.btn_text {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
 }

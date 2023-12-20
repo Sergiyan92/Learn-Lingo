@@ -18,6 +18,7 @@ const LoginForm = ({ onClose }: Modal) => {
     onSubmit: (values) => {
       // Handle login logic here
       console.log("Logged in:", values);
+      formik.resetForm();
       // Close the modal or perform any other actions using onClose
       onClose();
     },

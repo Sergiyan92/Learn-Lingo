@@ -145,3 +145,17 @@
   letter-spacing: 0em;
   color: var(--color-main-text);
 }
+.btn_book {
+  margin-top: 32px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-button-main);
+  padding: 16px 48px;
+}
+.btn_book_text {
+  color: var(--color-main-text);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+}

@@ -33,6 +33,7 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
       // Handle login logic here
       console.log("Logged in:", values);
       // Close the modal or perform any other actions using onClose
+      formik.resetForm();
       onClose();
     },
   });
@@ -46,22 +47,30 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
           <button className={css.btm_close} onClick={() => onClose()}>
             <img src={close} alt="icon close" width={32} height={32} />
           </button>
-          <h2>Book Trial Lesson</h2>
+          <h2 className={css.title_book}>Book trial lesson</h2>
           <p className={css.sub_title_book}>
             Our experienced tutor will assess your current language level,
             discuss your learning goals, and tailor the lesson to your specific
             needs.
           </p>
-          <img
-            src={teacherInfo.avatar_url}
-            alt={`${teacherInfo.name}'s Avatar`}
-            width={32}
-            height={32}
-          />
-          <span>{teacherInfo.name}</span>
-          <h3>What is your main reason for learning English?</h3>
+          <div className={css.info}>
+            <img
+              className={css.img_avatar}
+              src={teacherInfo.avatar_url}
+              alt={`${teacherInfo.name}'s Avatar`}
+              width={44}
+              height={44}
+            />
+            <div className={css.info_text}>
+              <span className={css.info_title}>Your teacher</span>
+              <span className={css.info_sub}>{teacherInfo.name}</span>
+            </div>
+          </div>
+          <h3 className={css.sub_title}>
+            What is your main reason for learning English?
+          </h3>
           <div>
-            <label>
+            <label className={css.lable}>
               <input
                 type="radio"
                 id="careerAndBusiness"
@@ -72,12 +81,13 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
                 checked={
                   formik.values.reasonForLearning === "Career and Business"
                 }
+                className={css.custom_radio}
               />
               Career and Business
             </label>
           </div>
           <div>
-            <label>
+            <label className={css.lable}>
               <input
                 type="radio"
                 id="lessonForKids"
@@ -91,7 +101,7 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
             </label>
           </div>
           <div>
-            <label>
+            <label className={css.lable}>
               <input
                 type="radio"
                 id="livingabroad"
@@ -105,7 +115,7 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
             </label>
           </div>
           <div>
-            <label>
+            <label className={css.lable}>
               <input
                 type="radio"
                 id="examsandcoursework"
@@ -121,7 +131,7 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
             </label>
           </div>
           <div>
-            <label>
+            <label className={css.lable}>
               <input
                 type="radio"
                 id="culturetravelorhobby"
@@ -144,7 +154,7 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.fullname}
-            className={css.input_email}
+            className={css.input_fullname}
           />
           {formik.touched.fullname && formik.errors.fullname ? (
             <div>{formik.errors.fullname}</div>
@@ -180,7 +190,7 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
             ) : null}
           </div>
           <div className={css.btn}>
-            <button className={css.btn_login} type="submit">
+            <button className={css.btn_book} type="submit">
               <span className={css.btn_text}>Book</span>
             </button>
           </div>

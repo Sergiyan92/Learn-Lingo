@@ -204,7 +204,7 @@ const Teachers: React.FC = () => {
                       <ul>
                         <div className={css.exp}>{teacher.experience}</div>
                         {teacher.reviews.map((review, reviewIndex) => (
-                          <li key={reviewIndex}>
+                          <div key={reviewIndex}>
                             <div className={css.info_coment}>
                               <span className={css.title_sub}>
                                 {review.reviewer_name}{" "}
@@ -219,9 +219,10 @@ const Teachers: React.FC = () => {
                               </div>
                               <span>{review.comment}</span>
                             </div>
-                          </li>
+                          </div>
                         ))}
                         <button
+                          className={css.btn_book}
                           onClick={() =>
                             handleBookTrialLesson({
                               avatar_url: teacher.avatar_url,
@@ -229,7 +230,9 @@ const Teachers: React.FC = () => {
                             })
                           }
                         >
-                          Book Trial lesson
+                          <span className={css.btn_book_text}>
+                            Book trial lesson
+                          </span>
                         </button>
                       </ul>
                       <button
@@ -255,9 +258,9 @@ const Teachers: React.FC = () => {
               </div>
               <div className={css.level}>
                 {teacher.levels.map((level, levelindex) => (
-                  <li key={levelindex} className={css.level_leng}>
+                  <div key={levelindex} className={css.level_leng}>
                     #{level}
-                  </li>
+                  </div>
                 ))}
               </div>
             </div>
