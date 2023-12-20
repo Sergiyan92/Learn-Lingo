@@ -3,6 +3,7 @@ import css from "./Teachers.module.css";
 import DropdownList from "../filter/DropdownList";
 import book from "../../assets/book-open-01.svg";
 import star from "../../assets/star.svg";
+import BookTrial from "../book-trial/BookTrial";
 
 interface Review {
   reviewer_name: string;
@@ -44,6 +45,11 @@ const Teachers: React.FC = () => {
   const [expandedTeachers, setExpandedTeachers] = useState<
     Record<string, boolean>
   >({});
+  const [isTrialLessonModalOpen, setIsTrialLessonModalOpen] = useState(false);
+  const [selectedTeacherInfo, setSelectedTeacherInfo] = useState<{
+    avatar_url: string;
+    name: string;
+  } | null>(null);
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -117,6 +123,13 @@ const Teachers: React.FC = () => {
       ...prev,
       [teacherId]: !prev[teacherId],
     }));
+  };
+  const handleBookTrialLesson = (teacherInfo: {
+    avatar_url: string;
+    name: string;
+  }) => {
+    setSelectedTeacherInfo(teacherInfo);
+    setIsTrialLessonModalOpen(true);
   };
 
   return (
@@ -208,6 +221,16 @@ const Teachers: React.FC = () => {
                             </div>
                           </li>
                         ))}
+                        <button
+                          onClick={() =>
+                            handleBookTrialLesson({
+                              avatar_url: teacher.avatar_url,
+                              name: `${teacher.name} ${teacher.surname}`,
+                            })
+                          }
+                        >
+                          Book Trial lesson
+                        </button>
                       </ul>
                       <button
                         className={css.btn_read}
@@ -248,6 +271,11 @@ const Teachers: React.FC = () => {
           </button>
         )}
       </div>
+      <BookTrial
+        isOpen={isTrialLessonModalOpen}
+        onClose={() => setIsTrialLessonModalOpen(false)}
+        teacherInfo={selectedTeacherInfo || { avatar_url: "", name: "" }}
+      />
     </section>
   );
 };

@@ -1,5 +1,3 @@
-// LoginForm.js
-
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import css from "./LoginForm.module.css";
