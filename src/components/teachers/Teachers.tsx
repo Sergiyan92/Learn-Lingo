@@ -3,6 +3,7 @@ import css from "./Teachers.module.css";
 import DropdownList from "../filter/DropdownList";
 import book from "../../assets/book-open-01.svg";
 import star from "../../assets/star.svg";
+import heart from "../../assets/hard.svg";
 import BookTrial from "../book-trial/BookTrial";
 
 interface Review {
@@ -175,6 +176,11 @@ const Teachers: React.FC = () => {
                   Price 1 / hour:
                   <span className={css.price}> {teacher.price_per_hour}$</span>
                 </span>
+                <div>
+                  <button type="button" className={css.btn_heart}>
+                    <img src={heart} alt="heart icon" />
+                  </button>
+                </div>
               </div>
               <h2 className={css.name}>
                 {teacher.name} {teacher.surname}
@@ -198,6 +204,7 @@ const Teachers: React.FC = () => {
                 <span className={css.title_lesson}>
                   {teacher.conditions.join(" ")}
                 </span>
+
                 <div>
                   {expandedTeachers[teacher.name + teacher.surname] ? (
                     <>
