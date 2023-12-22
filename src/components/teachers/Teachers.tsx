@@ -31,18 +31,10 @@ const Teachers: React.FC = () => {
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [displayedTeachers, setDisplayedTeachers] = useState<Teacher[]>([]);
   const [teachersToShow, setTeachersToShow] = useState<number>(4);
-  const [, setSelectedLanguage] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
-  const [, setSelectedLevel] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
-  const [, setSelectedPrice] = useState<{
-    value: string;
-    label: string;
-  } | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
+  const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
+
   const [expandedTeachers, setExpandedTeachers] = useState<
     Record<string, boolean>
   >({});
@@ -95,26 +87,63 @@ const Teachers: React.FC = () => {
     { value: "32", label: "32$" },
     { value: "35", label: "35$" },
   ];
+  const filterTeachers = (
+    language: string | null,
+    level: string | null,
+    price: string | null
+  ) => {
+    let filteredTeachers = teachers;
+
+    if (language) {
+      filteredTeachers = filteredTeachers.filter((teacher) =>
+        teacher.languages.includes(language)
+      );
+    }
+
+    if (level) {
+      filteredTeachers = filteredTeachers.filter((teacher) =>
+        teacher.levels.includes(level)
+      );
+    }
+
+    if (price) {
+      filteredTeachers = filteredTeachers.filter(
+        (teacher) => teacher.price_per_hour.toString() === price
+      );
+    }
+
+    setDisplayedTeachers(filteredTeachers.slice(0, teachersToShow));
+  };
+
   const handleLanguageChange = (
     selectedOption: { value: string; label: string } | null
   ) => {
-    setSelectedLanguage(selectedOption);
-    // Додайте логіку для фільтрації викладачів за мовою
+    setSelectedLanguage(selectedOption?.value || null);
+    filterTeachers(selectedOption?.value || null, selectedLevel, selectedPrice);
   };
 
   const handleLevelChange = (
     selectedOption: { value: string; label: string } | null
   ) => {
-    setSelectedLevel(selectedOption);
-    // Додайте логіку для фільтрації викладачів за рівнем знань
+    setSelectedLevel(selectedOption?.value || null);
+    filterTeachers(
+      selectedLanguage,
+      selectedOption?.value || null,
+      selectedPrice
+    );
   };
 
   const handlePriceChange = (
     selectedOption: { value: string; label: string } | null
   ) => {
-    setSelectedPrice(selectedOption);
-    // Додайте логіку для фільтрації викладачів за ціною
+    setSelectedPrice(selectedOption?.value || null);
+    filterTeachers(
+      selectedLanguage,
+      selectedLevel,
+      selectedOption?.value || null
+    );
   };
+
   const handleLoadMore = () => {
     setTeachersToShow((prev) => prev + 4);
   };

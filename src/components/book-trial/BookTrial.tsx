@@ -20,7 +20,7 @@ const BookTrial: React.FC<TrialLessonModalProps> = ({
     initialValues: {
       fullname: "",
       email: "",
-      phonenumber: "",
+      phonenumber: "+380",
       reasonForLearning: "",
     },
     validationSchema: Yup.object({
