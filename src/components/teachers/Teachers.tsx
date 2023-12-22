@@ -63,20 +63,20 @@ const Teachers: React.FC = () => {
   }, [teachers, teachersToShow]);
 
   const languageOptions = [
-    { value: "english", label: "English" },
-    { value: "spanish", label: "Spanish" },
-    { value: "french", label: "French" },
-    { value: "german", label: "German" },
-    { value: "mandarin-chinese", label: "Mandarin Chinese" },
+    { value: "English", label: "English" },
+    { value: "Spanish", label: "Spanish" },
+    { value: "French", label: "French" },
+    { value: "German", label: "German" },
+    { value: "Mandarin Chinese", label: "Mandarin Chinese" },
   ];
 
   const levelOptions = [
-    { value: "a1beginner", label: "A1 Beginner" },
-    { value: "a2elementary", label: "A2 Elementary" },
-    { value: "b2intermediate", label: "B1 Intermediate" },
-    { value: "b2upper-intermediate", label: "B2 Upper-Intermediate" },
-    { value: "c1advanced", label: "C1 Advanced" },
-    { value: "c2proficient", label: "C2 Proficient" },
+    { value: "A1 Beginner", label: "A1 Beginner" },
+    { value: "A2 Elementary", label: "A2 Elementary" },
+    { value: "B1 Intermediate", label: "B1 Intermediate" },
+    { value: "B2 Upper-Intermediate", label: "B2 Upper-Intermediate" },
+    { value: "C1 Advanced", label: "C1 Advanced" },
+    { value: "C2 Proficient", label: "C2 Proficient" },
   ];
 
   const priceOptions = [
@@ -118,8 +118,12 @@ const Teachers: React.FC = () => {
   const handleLanguageChange = (
     selectedOption: { value: string; label: string } | null
   ) => {
-    setSelectedLanguage(selectedOption?.value || null);
-    filterTeachers(selectedOption?.value || null, selectedLevel, selectedPrice);
+    setSelectedLanguage(selectedOption ? selectedOption.value : null);
+    filterTeachers(
+      selectedOption ? selectedOption.value : null,
+      selectedLevel,
+      selectedPrice
+    );
   };
 
   const handleLevelChange = (
