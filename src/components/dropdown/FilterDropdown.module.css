@@ -1,0 +1,5 @@
+.filter {
+  display: flex;
+  align-items: center;
+  padding: 96px 128px 32px;
+}
