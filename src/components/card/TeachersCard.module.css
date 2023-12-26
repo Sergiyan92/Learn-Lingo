@@ -111,24 +111,7 @@
 .exp {
   margin-top: 16px;
 }
-.btn {
-  display: flex;
-}
-.btn_load {
-  margin-top: 32px;
-  margin-bottom: 96px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 16px 48px;
-  border: none;
-  border-radius: 12px;
-  background-color: var(--color-button-main);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 28px;
-  letter-spacing: 0em;
-  color: var(--color-main-text);
-}
+
 .btn_book {
   margin-top: 32px;
   border: none;
