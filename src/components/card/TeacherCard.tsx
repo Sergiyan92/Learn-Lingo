@@ -1,10 +1,9 @@
 // TeacherCard.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import css from "./TeachersCard.module.css";
 import book from "../../assets/book-open-01.svg";
 import star from "../../assets/star.svg";
 import heart from "../../assets/hard.svg";
-// import BookTrial from "../book-trial/BookTrial";
 
 interface Review {
   reviewer_name: string;
@@ -35,6 +34,8 @@ interface TeacherCardProps {
     avatar_url: string;
     name: string;
   }) => void;
+  onAddToFavorites?: (teacher: Teacher) => void;
+  onRemoveFromFavorites?: (teacher: Teacher) => void;
 }
 
 const TeacherCard: React.FC<TeacherCardProps> = ({
@@ -42,7 +43,27 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
   expanded,
   onReadMoreToggle,
   onBookTrialLesson,
+  onAddToFavorites,
+  onRemoveFromFavorites,
 }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    // Check if teacher is in favorites on component mount
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    setIsFavorite(favorites.some((fav: Teacher) => fav.name === teacher.name));
+  }, [teacher]);
+
+  const handleFavoriteClick = () => {
+    // Toggle favorite status and update localStorage
+    setIsFavorite(!isFavorite);
+    if (isFavorite && onRemoveFromFavorites) {
+      onRemoveFromFavorites(teacher);
+    } else if (!isFavorite && onAddToFavorites) {
+      onAddToFavorites(teacher);
+    }
+  };
+
   return (
     <li className={css.card}>
       <div>
@@ -60,16 +81,25 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
             <span className={css.subtitle}>Lessons online</span> |
             <span className={css.subtitle}>
               Lessons done: {teacher.lessons_done}
-            </span>
-            | <img className={css.icon} src={star} alt="star icon" />
+            </span>{" "}
+            |
+            <img className={css.icon} src={star} alt="star icon" />
             <span className={css.subtitle}>Rating: {teacher.rating}</span> |
             <span className={css.subtitle}>
               Price 1 / hour:
               <span className={css.price}> {teacher.price_per_hour}$</span>
             </span>
             <div>
-              <button type="button" className={css.btn_heart}>
-                <img src={heart} alt="heart icon" />
+              <button
+                type="button"
+                className={css.btn_heart}
+                onClick={handleFavoriteClick}
+              >
+                <img
+                  src={heart}
+                  alt="heart icon"
+                  style={{ fill: isFavorite ? "red" : "none" }}
+                />
               </button>
             </div>
           </div>
@@ -137,7 +167,6 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
               </button>
             </>
           ) : (
-            // Скорочена інформація
             <button
               className={css.btn_read}
               onClick={() => onReadMoreToggle(teacher.name + teacher.surname)}

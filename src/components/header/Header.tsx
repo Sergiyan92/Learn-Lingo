@@ -19,6 +19,9 @@ const Header = () => {
           <Link className={css.link} to={"/teachers"}>
             Teachers
           </Link>
+          <Link to={"/favorites"} className={css.link}>
+            Favorites
+          </Link>
         </div>
       </nav>
       <div className={css.auth}>
