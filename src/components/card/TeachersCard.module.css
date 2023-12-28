@@ -140,3 +140,7 @@
   border-radius: 35px;
   border: 1px solid #8a8a89;
 }
+.btn_heart.favorite {
+  border-radius: 5px;
+  background-color: red; /* або будь-який інший колір */
+}

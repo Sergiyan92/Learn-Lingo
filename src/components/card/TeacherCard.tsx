@@ -55,26 +55,29 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
   }, [teacher]);
 
   const handleFavoriteClick = () => {
-    // Toggle favorite status and update localStorage
-    setIsFavorite(!isFavorite);
+    // Toggle favorite status
+    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
 
-    // Log the current state of favorites
+    // Retrieve current favorites from localStorage
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    favorites.push(teacher);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-    console.log("Current favorites:", favorites);
+
+    if (isFavorite) {
+      // If the teacher is already a favorite, remove them
+      const updatedFavorites = favorites.filter(
+        (fav: Teacher) => fav.name !== teacher.name
+      );
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    } else {
+      // If the teacher is not a favorite, add them
+      favorites.push(teacher);
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
 
     if (isFavorite && onRemoveFromFavorites) {
       onRemoveFromFavorites(teacher);
     } else if (!isFavorite && onAddToFavorites) {
       onAddToFavorites(teacher);
     }
-
-    // Log the updated state of favorites
-    const updatedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]"
-    );
-    console.log("Updated favorites:", updatedFavorites);
   };
 
   return (
@@ -111,7 +114,9 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
                 <img
                   src={heart}
                   alt="heart icon"
-                  style={{ fill: isFavorite ? "red" : "none" }}
+                  className={
+                    css.btn_heart + (isFavorite ? " " + css.favorite : "")
+                  }
                 />
               </button>
             </div>
