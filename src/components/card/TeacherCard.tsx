@@ -57,11 +57,24 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
   const handleFavoriteClick = () => {
     // Toggle favorite status and update localStorage
     setIsFavorite(!isFavorite);
+
+    // Log the current state of favorites
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    favorites.push(teacher);
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    console.log("Current favorites:", favorites);
+
     if (isFavorite && onRemoveFromFavorites) {
       onRemoveFromFavorites(teacher);
     } else if (!isFavorite && onAddToFavorites) {
       onAddToFavorites(teacher);
     }
+
+    // Log the updated state of favorites
+    const updatedFavorites = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
+    );
+    console.log("Updated favorites:", updatedFavorites);
   };
 
   return (

@@ -1,5 +1,5 @@
-import css from "./Favorites.module.css";
 // FavoritesPage.tsx
+import React, { useState, useEffect } from "react";
 import TeacherCard from "../card/TeacherCard";
 
 interface Review {
@@ -7,6 +7,7 @@ interface Review {
   reviewer_rating: number;
   comment: string;
 }
+
 interface Teacher {
   name: string;
   surname: string;
@@ -21,18 +22,28 @@ interface Teacher {
   conditions: string[];
   experience: string;
 }
-
 interface FavoritesPageProps {
-  favorites: Teacher[];
   onRemoveFromFavorites: (teacher: Teacher) => void;
 }
 
-const Favorites: React.FC<FavoritesPageProps> = ({
-  favorites,
-  onRemoveFromFavorites,
-}) => {
+const Favorites: React.FC<FavoritesPageProps> = ({ onRemoveFromFavorites }) => {
+  const [favorites, setFavorites] = useState<Teacher[]>([]);
+
+  // Завантаження обраних вчителів при монтажі компонента
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem("favorites");
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+  }, []);
+
+  // Збереження обраних вчителів при їх зміні
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
-    <div className={css.fav}>
+    <div>
       <h1>Favorites</h1>
       <ul>
         {favorites.map((teacher, index) => (

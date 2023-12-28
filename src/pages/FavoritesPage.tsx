@@ -31,12 +31,7 @@ const FavoritesPage = () => {
     setFavorites(updatedFavorites);
   };
 
-  return (
-    <Favorites
-      favorites={favorites}
-      onRemoveFromFavorites={removeFromFavorites}
-    />
-  );
+  return <Favorites onRemoveFromFavorites={removeFromFavorites} />;
 };
 
 export default FavoritesPage;
