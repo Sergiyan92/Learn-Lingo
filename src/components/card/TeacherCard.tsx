@@ -1,9 +1,9 @@
-// TeacherCard.tsx
 import React, { useState, useEffect } from "react";
 import css from "./TeachersCard.module.css";
 import book from "../../assets/book-open-01.svg";
 import star from "../../assets/star.svg";
 import heart from "../../assets/hard.svg";
+import heart_like from "../../assets/heart.svg";
 
 interface Review {
   reviewer_name: string;
@@ -111,13 +111,7 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
                 className={css.btn_heart}
                 onClick={handleFavoriteClick}
               >
-                <img
-                  src={heart}
-                  alt="heart icon"
-                  className={
-                    css.btn_heart + (isFavorite ? " " + css.favorite : "")
-                  }
-                />
+                <img src={isFavorite ? heart : heart_like} alt="heart icon" />
               </button>
             </div>
           </div>
